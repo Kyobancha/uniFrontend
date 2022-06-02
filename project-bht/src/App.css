@@ -32,11 +32,10 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.background-image {
+    padding-bottom: 2rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 75%;
+    background-image: url("./img/landingpage-background.jpg");
 }
