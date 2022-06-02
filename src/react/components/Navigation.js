@@ -6,8 +6,8 @@ function Navigation() {
                 <button>Login</button>
             </div>
             <nav>
-                <ul className="flex space-between justify-between ">
-                    <li className="hover:text-white"><a>Home</a></li>
+                <ul className="flex space-between justify-between align-center">
+                    <li className="hover:text-white"><a className="text-center">Home</a></li>
                     <li className="hover:text-white"><a>Users</a></li>
                     <li className="hover:text-white"><a>Threads</a></li>
                     <li className="hover:text-white"><a>Messages</a></li>
