@@ -1,11 +1,14 @@
-import LandingPage from "./react/pages/LandingPage";
+import HomePage from "./react/pages/HomePage";
 import "./App.css";
+import Navigation from "./react/components/Navigation";
+import Footer from "./react/components/Footer";
 
 function App() {
     return (
-        <div className="App">
-            <h1 className="text-1xl font-bold underline">Hey</h1>
-            <LandingPage>Hello world</LandingPage>
+        <div className="h-100% bg-gradient-to-r from-cyan-400 to-blue-500 text-center">
+            <Navigation />
+            <HomePage>Hello world</HomePage>
+            <Footer />
         </div>
     );
 }
