@@ -1,4 +1,4 @@
-function DataPrivacy() {
+function Privacy() {
     return (
         <div>
             <h1 className="text-5xl font-bold mb-5">Data Privacy</h1>
@@ -13,4 +13,4 @@ function DataPrivacy() {
     )
 }
 
-export default DataPrivacy
+export default Privacy

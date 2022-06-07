@@ -1,7 +1,8 @@
 import image from "../../img/landingpage-background.jpg";
 
-function HomePage(props) {
+function Home(props) {
     return (
+        // Content depending on whether the user is logged in or not
         <div>
             <h1 className="text-5xl font-bold text-center">Welcome</h1>
             <div className="mr-auto ml-auto w-150 block">
@@ -14,4 +15,4 @@ function HomePage(props) {
     );
 }
 
-export default HomePage;
+export default Home;
