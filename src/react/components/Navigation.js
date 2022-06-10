@@ -6,7 +6,7 @@ import { useState } from "react"
 
 function Navigation() {
     return (
-        <div className="mb-5 sticky top-0">
+        <div >
             <nav>
                 <ul className="flex text-center bg-blue-400">
                     <li className="flex w-1/4 h-10">
