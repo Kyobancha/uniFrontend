@@ -1,5 +1,4 @@
 import { Link, NavLink } from "react-router-dom"
-import LoginModal from "./LoginModal"
 import { useState } from "react"
 
 

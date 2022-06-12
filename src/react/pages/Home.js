@@ -21,7 +21,7 @@ function Home(props) {
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
+                <p>12.6.2020 - Login now works with redux and hides the login dialog when credentials are correct.</p>
                 <p>7.6.2020 - A toggable login-module has been implemented. Improvement of design. Navigation is now sticky.</p>
             </section>
             <section className="mr-auto ml-auto w-150 block mt-10">
