@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectStatus } from "./LoginModal/loginSlice";
 import LoginModal from "./LoginModal/LoginModal";
 import Navigation from "./Navigation";
+import { Button } from 'react-bootstrap';
 
 function TopBar() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -28,9 +29,10 @@ function TopBar() {
         <div className="mb-5 sticky top-0">
             <div className="flex space-between justify-between">
                 <h3>uni Frontend Forum</h3>
+                
                 {loginStatus === "loggedIn" ? 
-                    <button to="/login" id="LogoutButton" onClick={closeModalAndLogout}>Logout</button> :
-                    <button to="/login" id="OpenLoginDialogButton" onClick={openModal}>Login</button>
+                    <Button to="/login" id="LogoutButton" onClick={closeModalAndLogout}>Logout</Button> :
+                    <Button to="/login" id="OpenLoginDialogButton" onClick={openModal}>Login</Button>
                 }
             </div>
             <Navigation />

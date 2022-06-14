@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Form, Button } from 'react-bootstrap';
 import { loginAsync, selectStatus, selectToken } from "./loginSlice";
 
 function LoginModal(props) {
@@ -36,71 +37,27 @@ function LoginModal(props) {
 
     return (
         <div className={`absolute top-0 bg-gray-700 bg-opacity-50 bg-repeat w-screen h-screen ${loginStatus === "loggedIn" ? "hidden" : ""}`}>
-            <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 text-center bg-blue-300 w-3/12 h-2/6 drop-shadow-xl flex flex-col">
-                <button
-                    onClick={props.closeModal}
-                    className="bg-red-500 border-2 rounded w-8 h-8 drop-shadow-md self-end"
-                >
-                    X
-                </button>
-                <h3 className="font-bold mt-2">Login</h3>
-                <form>
-                    <div className="flex flex-row justify-center mt-2">
-                        <label
-                            htmlFor="LoginUserIDInput"
-                            className="block w-20 text-left"
-                        >
-                            Name:{" "}
-                        </label>
-                        {/* name and value property are used for key-value pairs*/}
-                        <input
-                            onChange={handleOnChange}
-                            value={userName}
-                            name="userName"
-                            id="LoginUserIDInput"
-                            className="border-2 rounded w-40"
-                        />
-                        <br></br>
-                    </div>
-                    <div className="flex flex-row justify-center mt-2">
-                        <label
-                            htmlFor="LoginPasswordInput"
-                            className="block w-20 text-left"
-                        >
-                            Password:{" "}
-                        </label>
-                        <input
-                            type="password"
-                            onChange={handleOnChange}
-                            value={userPassword}
-                            name="userPassword"
-                            id="LoginPasswordInput"
-                            className="border-2 rounded w-40"
-                        />
-                    </div>
-                    <p
-                        className={`inline-block w-60 mt-2 text-red-600 ${
-                            loginStatus === "failed" ? "" : "hidden"
-                        }`}
-                    >
+            <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 w-96 bg-white rounded drop-shadow-xl">
+                <Form className="flex flex-col p-6">
+                    <h3 className="text-center">Login</h3>
+                    <Form.Group className="mb-3" controlId="LoginUserIDInput">
+                        <Form.Label>User ID</Form.Label>
+                        <Form.Control id="LoginUserIDInput" type="text" placeholder="Enter user ID" name="userName" value={userName} onChange={handleOnChange}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="LoginPasswordInput">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control id="LoginPasswordInput" type="password" placeholder="Enter password" name="userPassword" value={userPassword} onChange={handleOnChange}/>
+                    </Form.Group>
+                    <Form.Text className={`text-muted ${loginStatus === "failed" ? "" : "hidden"}`}>
                         Wrong user ID or password.
-                    </p>
-                    <p
-                        className={`inline-block w-60 mt-2 text-red-600 ${
-                            loginStatus === "Pending" ? "" : "hidden"
-                        }`}
-                    >
+                    </Form.Text>
+                    <Form.Text className={`text-muted ${loginStatus === "pending" ? "" : "hidden"}`}>
                         Loading...
-                    </p>
-                    <button
-                        id="LoginButton"
-                        onClick={handleSubmit}
-                        type="submit"
-                        className="border-2 rounded w-60 mt-5 bg-green-500"
-                    >
-                        Login
-                    </button>
-                </form>
+                    </Form.Text>
+                    <Button variant="primary" type="submit" id="LoginButton" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                </Form>
             </div>
         </div>
     );
