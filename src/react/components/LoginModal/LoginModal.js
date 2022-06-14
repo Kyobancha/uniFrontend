@@ -35,8 +35,15 @@ function LoginModal(props) {
             });
     }
 
+    function handleGrayAreaClick(e){
+        const grayArea = document.getElementById("grayArea");
+        if(e.target === grayArea){
+            props.closeModal()
+        }
+    }
+
     return (
-        <div className={`absolute top-0 bg-gray-700 bg-opacity-50 bg-repeat w-screen h-screen ${loginStatus === "loggedIn" ? "hidden" : ""}`}>
+        <div id="grayArea" className={`absolute top-0 bg-gray-700 bg-opacity-50 bg-repeat w-screen h-screen ${loginStatus === "loggedIn" ? "hidden" : ""}`} onClick={handleGrayAreaClick}>
             <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 w-96 bg-white rounded drop-shadow-xl">
                 <Form className="flex flex-col p-6">
                     <h3 className="text-center">Login</h3>
@@ -44,7 +51,7 @@ function LoginModal(props) {
                         <Form.Label>User ID</Form.Label>
                         <Form.Control id="LoginUserIDInput" type="text" placeholder="Enter user ID" name="userName" value={userName} onChange={handleOnChange}/>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="LoginPasswordInput">
+                    <Form.Group controlId="LoginPasswordInput">
                         <Form.Label>Password</Form.Label>
                         <Form.Control id="LoginPasswordInput" type="password" placeholder="Enter password" name="userPassword" value={userPassword} onChange={handleOnChange}/>
                     </Form.Group>
@@ -54,7 +61,7 @@ function LoginModal(props) {
                     <Form.Text className={`text-muted ${loginStatus === "pending" ? "" : "hidden"}`}>
                         Loading...
                     </Form.Text>
-                    <Button variant="primary" type="submit" id="LoginButton" onClick={handleSubmit}>
+                    <Button className="mt-3 " variant="primary" type="submit" id="LoginButton" onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Form>
