@@ -1,6 +1,6 @@
 import image from "../../img/landingpage-background.jpg";
 
-function Home(props) {
+function PublicHome(props) {
     return (
         // Content depending on whether the user is logged in or not
         <div>
@@ -20,7 +20,7 @@ function Home(props) {
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
                 <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
+                <p>13.6.2020 - Logout has been implemented and works as expected.</p>
                 <p>12.6.2020 - Login now works with redux and hides the login dialog when credentials are correct.</p>
                 <p>7.6.2020 - A toggable login-module has been implemented. Improvement of design. Navigation is now sticky.</p>
             </section>
@@ -34,4 +34,4 @@ function Home(props) {
     );
 }
 
-export default Home;
+export default PublicHome;

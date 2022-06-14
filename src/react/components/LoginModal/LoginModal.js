@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, loginAsync, selectStatus, selectToken } from "./loginSlice";
+import { loginAsync, selectStatus, selectToken } from "./loginSlice";
 
 function LoginModal(props) {
     const [userName, setUserName] = useState("");
@@ -47,7 +47,7 @@ function LoginModal(props) {
                 <form>
                     <div className="flex flex-row justify-center mt-2">
                         <label
-                            htmlFor="userName"
+                            htmlFor="LoginUserIDInput"
                             className="block w-20 text-left"
                         >
                             Name:{" "}
@@ -57,14 +57,14 @@ function LoginModal(props) {
                             onChange={handleOnChange}
                             value={userName}
                             name="userName"
-                            id="userName"
+                            id="LoginUserIDInput"
                             className="border-2 rounded w-40"
                         />
                         <br></br>
                     </div>
                     <div className="flex flex-row justify-center mt-2">
                         <label
-                            htmlFor="userPassword"
+                            htmlFor="LoginPasswordInput"
                             className="block w-20 text-left"
                         >
                             Password:{" "}
@@ -74,7 +74,7 @@ function LoginModal(props) {
                             onChange={handleOnChange}
                             value={userPassword}
                             name="userPassword"
-                            id="userPassword"
+                            id="LoginPasswordInput"
                             className="border-2 rounded w-40"
                         />
                     </div>
@@ -83,9 +83,17 @@ function LoginModal(props) {
                             loginStatus === "failed" ? "" : "hidden"
                         }`}
                     >
-                        Login failed.
+                        Wrong user ID or password.
+                    </p>
+                    <p
+                        className={`inline-block w-60 mt-2 text-red-600 ${
+                            loginStatus === "Pending" ? "" : "hidden"
+                        }`}
+                    >
+                        Loading...
                     </p>
                     <button
+                        id="LoginButton"
                         onClick={handleSubmit}
                         type="submit"
                         className="border-2 rounded w-60 mt-5 bg-green-500"

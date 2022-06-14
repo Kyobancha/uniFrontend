@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authenticate from "../../services/AuthenticationService";
 
 const initialState = {
-    status: "loggedOut", //Possible status are: loggedOut, loggedIn, failed
-    token: undefined,
+    status: "loggedOut", //Possible status are: loggedOut, loggedIn, pending, failed
+    token: "",
 };
 
 export const loginAsync = createAsyncThunk("login/login", async (userData) => {
@@ -17,12 +17,13 @@ export const loginSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.status = "loggedOut";
+            state.token = ""
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(loginAsync.pending, (state, action) => {
-                //could add a loading screen in the future
+                state.status = "pending";
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.status = "loggedIn"; //needed to spawn the red login text
