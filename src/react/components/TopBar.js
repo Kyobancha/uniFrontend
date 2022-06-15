@@ -26,14 +26,8 @@ function TopMenu() {
     }
 
     return (
-        <div className="mb-5 sticky top-0 flex justify-center">
-            <div className="w-200 flex bg-green-100">
-                <Navigation className=""/>
-                {loginStatus === "loggedIn" ? 
-                    <Button to="/login" id="LogoutButton" className="" onClick={closeModalAndLogout}>Logout</Button> :
-                    <Button to="/login" id="OpenLoginDialogButton" onClick={openModal}>Login</Button>
-                }
-            </div>
+        <div className="mb-5 sticky top-0 ">
+            <Navigation closeModalAndLogout={closeModalAndLogout} openModal={openModal}/>
             {modalOpen ? (
                 <LoginModal
                     modalOpen={modalOpen}
