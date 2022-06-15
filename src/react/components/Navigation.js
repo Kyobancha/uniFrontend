@@ -9,7 +9,7 @@ function Navigation(props) {
     const loginStatus = useSelector(selectStatus);
 
     return loginStatus !== "loggedIn" ? (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
                 <LinkContainer to="/">
                     <Navbar.Brand>uni Frontend Forum</Navbar.Brand>
@@ -32,7 +32,7 @@ function Navigation(props) {
             </Container>
         </Navbar>
     ) : (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
                 <LinkContainer to="/">
                     <Navbar.Brand>uni Frontend Forum</Navbar.Brand>
