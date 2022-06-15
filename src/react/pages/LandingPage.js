@@ -11,7 +11,7 @@ function LandingPage() {
                 <h1>test</h1>
                 <PublicHome>Hello world</PublicHome>
             </Outlet>
-            <Footer className="w-200 my-5 bg-red" />
+            <Footer />
         </div>
     );
 }
