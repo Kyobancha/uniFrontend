@@ -47,7 +47,7 @@ function LoginModal(props) {
             <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 w-96 bg-white rounded drop-shadow-xl">
                 <Form className="flex flex-col p-6">
                     <h3 className="text-center">Login</h3>
-                    <Form.Group className="mb-3" controlId="LoginUserIDInput">
+                    <Form.Group className="mb-3">
                         <Form.Label>User ID</Form.Label>
                         <Form.Control id="LoginUserIDInput" type="text" placeholder="Enter user ID" name="userName" value={userName} onChange={handleOnChange}/>
                     </Form.Group>

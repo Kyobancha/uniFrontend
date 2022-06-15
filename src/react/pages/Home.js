@@ -1,5 +1,3 @@
-import image from "../../img/landingpage-background.jpg";
-
 function PublicHome(props) {
     return (
         // Content depending on whether the user is logged in or not
@@ -7,19 +5,7 @@ function PublicHome(props) {
             <h1 className="text-5xl font-bold text-center">Welcome</h1>
             <section className="mr-auto ml-auto w-150 block mt-10">
                 <h2 className="mr-auto ml-auto mt-10 text-3xl font-bold">Latest News</h2>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
-                <p>7.6.2020 - A toggable login-module has been implemented</p>
+                <p>14.6.2020 - Login-Modal has been replaced with a react-bootstrap component</p>
                 <p>13.6.2020 - Logout has been implemented and works as expected.</p>
                 <p>12.6.2020 - Login now works with redux and hides the login dialog when credentials are correct.</p>
                 <p>7.6.2020 - A toggable login-module has been implemented. Improvement of design. Navigation is now sticky.</p>

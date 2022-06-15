@@ -5,7 +5,7 @@ import LoginModal from "./LoginModal/LoginModal";
 import Navigation from "./Navigation";
 import { Button } from 'react-bootstrap';
 
-function TopBar() {
+function TopMenu() {
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useDispatch();
 
@@ -26,16 +26,14 @@ function TopBar() {
     }
 
     return (
-        <div className="mb-5 sticky top-0">
-            <div className="flex space-between justify-between">
-                <h3>uni Frontend Forum</h3>
-                
+        <div className="mb-5 sticky top-0 flex justify-center">
+            <div className="w-200 flex bg-green-100">
+                <Navigation className=""/>
                 {loginStatus === "loggedIn" ? 
-                    <Button to="/login" id="LogoutButton" onClick={closeModalAndLogout}>Logout</Button> :
+                    <Button to="/login" id="LogoutButton" className="" onClick={closeModalAndLogout}>Logout</Button> :
                     <Button to="/login" id="OpenLoginDialogButton" onClick={openModal}>Login</Button>
                 }
             </div>
-            <Navigation />
             {modalOpen ? (
                 <LoginModal
                     modalOpen={modalOpen}
@@ -46,4 +44,4 @@ function TopBar() {
     );
 }
 
-export default TopBar;
+export default TopMenu;

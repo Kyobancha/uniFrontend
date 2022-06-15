@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-function Footer() {
+function Footer(props) {
     return (
-        <footer className="bg-red my-5">
+        <footer className={props.className}>
             <nav>
                 <ul className="flex space-between justify-between">
                     <NavLink to="/imprint">Imprint</NavLink> |{" "}
