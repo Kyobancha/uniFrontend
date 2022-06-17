@@ -43,7 +43,7 @@ function Navigation(props) {
                         <LinkContainer to="/">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/users">
+                        <LinkContainer to="/users" id="OpenUserManagementButton">
                             <Nav.Link>Users</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/threads">

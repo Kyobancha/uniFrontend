@@ -1,7 +1,7 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PublicHome from "./react/pages/Home";
+import PublicHome from "./react/pages/PublicHome";
 import Users from "./react/pages/Users";
 import Threads from "./react/pages/Threads";
 import Messages from "./react/pages/Messages";

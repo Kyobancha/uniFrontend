@@ -1,14 +1,13 @@
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 import TopMenu from "../components/TopBar";
-import PublicHome from "./Home";
+import PublicHome from "./PublicHome";
 
 function LandingPage() {
     return (
-        <div id="LandingPage" className="h-100%">
+        <div className="h-100%">
             <TopMenu />
             <Outlet>
-                <h1>test</h1>
                 <PublicHome>Hello world</PublicHome>
             </Outlet>
             <Footer />
