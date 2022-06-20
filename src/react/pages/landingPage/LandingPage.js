@@ -1,6 +1,6 @@
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 import { Outlet } from "react-router-dom";
-import TopMenu from "../components/TopBar";
+import TopMenu from "../../components/TopMenu";
 import PublicHome from "./PublicHome";
 
 function LandingPage() {

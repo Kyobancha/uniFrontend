@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Button } from 'react-bootstrap';
-import { loginAsync, selectStatus, selectToken } from "./loginSlice";
+import { loginAsync, selectStatus, selectToken } from "./userSlice";
 
 function LoginModal(props) {
     const [userName, setUserName] = useState("");
@@ -26,8 +26,11 @@ function LoginModal(props) {
         let userData = {name: userName, password: userPassword}
         dispatch(loginAsync(userData))
             .then((res) => {
-                // console.log(res)
-                // setLoggedIn(true);
+                if(loginStatus === "loggedIn"){
+                    // props.closeModal();
+
+                    // setLoggedIn(true);
+                }
             })
             .catch((err) => {
                 // console.log(err)
@@ -51,7 +54,7 @@ function LoginModal(props) {
                         <Form.Label>User ID</Form.Label>
                         <Form.Control id="LoginUserIDInput" type="text" placeholder="Enter user ID" name="userName" value={userName} onChange={handleOnChange}/>
                     </Form.Group>
-                    <Form.Group controlId="LoginPasswordInput">
+                    <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control id="LoginPasswordInput" type="password" placeholder="Enter password" name="userPassword" value={userPassword} onChange={handleOnChange}/>
                     </Form.Group>
@@ -61,7 +64,7 @@ function LoginModal(props) {
                     <Form.Text className={`text-muted ${loginStatus === "pending" ? "" : "hidden"}`}>
                         Loading...
                     </Form.Text>
-                    <Button className="mt-3 " variant="primary" type="submit" id="LoginButton" onClick={handleSubmit}>
+                    <Button className="mt-3" variant="primary" type="submit" id="LoginButton" onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Form>

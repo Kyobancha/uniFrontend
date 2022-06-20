@@ -1,3 +1,5 @@
+import { Button } from "react-bootstrap"
+
 function submit() {
     console.log("Submit-button pressed")
 }
@@ -16,7 +18,7 @@ function Form() {
             <div className="flex flex-col w-96 mt-3">
                 <label>Message:</label>
                 <textarea className="h-32 border-2 rounded"></textarea>
-                <button className="self-end w-16 border rounded bg-green-500 mt-2">Submit</button>
+                <Button className="self-end  mt-2">Submit</Button>
             </div>
         </form>)
 }

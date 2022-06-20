@@ -1,4 +1,4 @@
-import Background from "../components/Background";
+import Background from "../../components/Background";
 
 function PublicHome(props) {
     return (

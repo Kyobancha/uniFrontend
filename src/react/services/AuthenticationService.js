@@ -1,7 +1,12 @@
 import axios from "axios";
+import config from '../../config';
 
 function authenticate(name, password) {
-    axios.defaults.baseURL = "https://localhost:443"; //auch auslagern in global config
+    const host = config.get("connection.host");
+    const port = config.get("connection.port");
+    console.log(host + ":" + port)
+    const connectionString = host + ":" + port;
+    axios.defaults.baseURL = connectionString; //auch auslagern in global config
     return new Promise((resolve, reject) => {
         axios.get("/authenticate", {
             auth: {

@@ -1,23 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authenticate from "../../services/AuthenticationService";
+import jwt_decode from 'jwt-decode';
 
 const initialState = {
-    status: "loggedOut", //Possible status are: loggedOut, loggedIn, pending, failed
     token: "",
+    user: {},
+    status: "loggedOut", //Possible status are: loggedOut, loggedIn, pending, failed
 };
 
-export const loginAsync = createAsyncThunk("login/login", async (userData) => {
+export const loginAsync = createAsyncThunk("user/login", async (userData) => {
     const { name, password } = userData;
     return await authenticate(name, password);
 });
 
-export const loginSlice = createSlice({
-    name: "login",
+export const userSlice = createSlice({
+    name: "user",
     initialState,
     reducers: {
         logout: (state) => {
+            state.token = "";
+            state.user = {};
             state.status = "loggedOut";
-            state.token = ""
         },
     },
     extraReducers: (builder) => {
@@ -26,8 +29,10 @@ export const loginSlice = createSlice({
                 state.status = "pending";
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
-                state.status = "loggedIn"; //needed to spawn the red login text
                 state.token = action.payload; //puts the token into the state
+                state.user = jwt_decode(action.payload);
+                console.log(state.user);
+                state.status = "loggedIn"; //needed to spawn the red login text
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.status = "failed"; //needed to spawn the red login text
@@ -35,10 +40,12 @@ export const loginSlice = createSlice({
     },
 });
 
-export const { logout } = loginSlice.actions;
+export const { logout } = userSlice.actions;
 // Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectStatus = (state) => state.login.status;
-export const selectToken = (state) => state.login.token;
+export const selectToken = (state) => state.user.token;
+export const selectStatus = (state) => state.user.status;
+export const selectUser = (state) => state.user.user;
 
-export default loginSlice.reducer;
+
+export default userSlice.reducer;

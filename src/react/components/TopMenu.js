@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectStatus } from "./LoginModal/loginSlice";
+import { logout, selectStatus } from "./LoginModal/userSlice";
 import LoginModal from "./LoginModal/LoginModal";
 import Navigation from "./Navigation";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 function TopMenu() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -12,7 +12,7 @@ function TopMenu() {
     const loginStatus = useSelector(selectStatus);
     const loginToken = useSelector(selectStatus);
 
-    function closeModalAndLogout(){
+    function closeModalAndLogout() {
         closeModal();
         dispatch(logout());
     }
@@ -27,13 +27,11 @@ function TopMenu() {
 
     return (
         <div className="mb-5 sticky top-0 ">
-            <Navigation closeModalAndLogout={closeModalAndLogout} openModal={openModal}/>
-            {modalOpen ? (
-                <LoginModal
-                    modalOpen={modalOpen}
-                    closeModal={closeModal}
-                ></LoginModal>
-            ) : null}
+            <Navigation
+                closeModalAndLogout={closeModalAndLogout}
+                openModal={openModal}
+            />
+            {modalOpen ? <LoginModal modalOpen={modalOpen} closeModal={closeModal} /> : null}
         </div>
     );
 }

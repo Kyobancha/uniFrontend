@@ -1,17 +1,18 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PublicHome from "./react/pages/PublicHome";
-import Users from "./react/pages/Users";
+import Users from "./react/pages/Users/Users";
 import Threads from "./react/pages/Threads";
 import Messages from "./react/pages/Messages";
 import Imprint from "./react/pages/Imprint";
 import Privacy from "./react/pages/Privacy";
 import Contact from "./react/pages/Contact";
-import LandingPage from "./react/pages/LandingPage";
+import LandingPage from "./react/pages/landingPage/LandingPage";
+import PublicHome from "./react/pages/landingPage/PublicHome";
+import PrivateHome from "./react/pages/landingPage/PrivateHome";
 import { useSelector } from "react-redux";
-import { selectStatus } from "./react/components/LoginModal/loginSlice";
-import PrivateHome from "./react/pages/PrivateHome";
+import { selectStatus } from "./react/components/LoginModal/userSlice";
+
 
 function App() {
     const loginStatus = useSelector(selectStatus);
