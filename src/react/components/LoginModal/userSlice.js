@@ -31,7 +31,6 @@ export const userSlice = createSlice({
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.token = action.payload; //puts the token into the state
                 state.user = jwt_decode(action.payload);
-                console.log(state.user);
                 state.status = "loggedIn"; //needed to spawn the red login text
             })
             .addCase(loginAsync.rejected, (state, action) => {

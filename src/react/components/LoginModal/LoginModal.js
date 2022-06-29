@@ -25,17 +25,6 @@ function LoginModal(props) {
         e.preventDefault();
         let userData = {name: userName, password: userPassword}
         dispatch(loginAsync(userData))
-            .then((res) => {
-                if(loginStatus === "loggedIn"){
-                    // props.closeModal();
-
-                    // setLoggedIn(true);
-                }
-            })
-            .catch((err) => {
-                // console.log(err)
-                // setLoggedIn(false);
-            });
     }
 
     function handleGrayAreaClick(e){
