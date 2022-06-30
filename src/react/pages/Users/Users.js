@@ -7,24 +7,17 @@ import UserModal from "./UserModal";
 
 function Users() {
     const [modalOpen, setModalOpen] = useState(false);
-    const [modalData, setmodalData] = useState(undefined)
+    const [modalData, setModalData] = useState(undefined)
     const [users, setUsers] = useState([]);
     const bearerToken = useSelector(selectToken);
 
     function closeModal() {
         setModalOpen(false);
+        setModalData(undefined);
     }
 
     function openModal() {
-        if(modalData){
-            get(bearerToken, modalData.userID)
-                .then(user => {
-                    setModalOpen(true); //open modal in PUT-mode
-                    setmodalData(user);
-                })
-        } else{
-            setModalOpen(true); //open modal in POST-mode
-        }
+        setModalOpen(true);
     }
 
     function extractUserId(inputString, unwantedSubString){
@@ -34,7 +27,15 @@ function Users() {
 
     function onEditClicked(e){
         const userID = extractUserId(e.target.id, "EditButton")
-        get(userID)
+        get(bearerToken, userID)
+        .then((res) => {
+            const userData = res.data;
+            setModalData(userData);
+            openModal();
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     function onDeleteClicked(e){
@@ -48,6 +49,23 @@ function Users() {
                 console.log(error);
             });
     }
+
+    function updateUserState(){
+        getAll(bearerToken)
+            .then((result) => {
+                return new Promise(resolve => {
+                    resolve(setUsers(result.data));
+                    console.log(result.data);
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        updateUserState()
+    }, []);
 
     function renderUsers(){
         return (
@@ -68,23 +86,6 @@ function Users() {
             </ul>
         )
     }
-
-    function updateUserState(){
-        getAll(bearerToken)
-            .then((result) => {
-                return new Promise(resolve => {
-                    resolve(setUsers(result.data));
-                    console.log(users);
-                })
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    useEffect(() => {
-        updateUserState()
-    }, []);
 
     return (
         <div id="Container" className="text-center">

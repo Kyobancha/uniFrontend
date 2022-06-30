@@ -53,7 +53,7 @@ function get(bearerToken, userID) {
 function update(userID, newUser) {
     return new Promise((resolve, reject) => {
         axios
-            .update(`/users/${userID}`, newUser)
+            .put(`/users/${userID}`, newUser)
             .then((response) => {
                 resolve(response);
             })

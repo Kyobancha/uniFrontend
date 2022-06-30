@@ -3,11 +3,12 @@ import { Form, Button, ToggleButton } from 'react-bootstrap';
 import { create, update } from '../../services/UserService';
 
 function UserModal(props){
-    const [userID, setUserID] = useState("");
-    const [userName, setUserName] = useState("");
+    const [userID, setUserID] = useState(props.modalData?.userID ?? "");
+    const [userName, setUserName] = useState(props.modalData?.userName ?? "");
     const [userPassword, setUserPassword] = useState("");
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(props.modalData?.isAdministrator ?? false);
 
+    console.log(props.modalData)
     function onCloseButtonClick(e){
         props.closeModal()
     }
@@ -24,16 +25,8 @@ function UserModal(props){
         }
     }
 
-    function handleOnEdit(e){
-        e.preventDefault();
-        let newUser = {
-            userID: userID,
-            userName: userName,
-            password: userPassword,
-            isAdministrator: isAdmin
-        }
-
-        update(newUser)
+    function updateUser(user){
+        update(props.modalData.userID, user)
             .then(() => {
                 props.updateUserState()
                 return props.rerenderUsers(props.bearerToken)
@@ -48,13 +41,16 @@ function UserModal(props){
 
     function handleSubmit(e) {
         e.preventDefault();
-        let newUser = {
+        let user = {
             userID: userID,
             userName: userName,
             password: userPassword,
             isAdministrator: isAdmin
         }
-        create(newUser)
+        if(props.modalData){
+            updateUser(user)
+        } else{
+            create(user)
             .then(() => {
                 props.updateUserState()
                 return props.rerenderUsers(props.bearerToken)
@@ -65,6 +61,7 @@ function UserModal(props){
             .catch(error => {
                 console.log(error);
             })
+        }
     }
 
 
@@ -80,7 +77,7 @@ function UserModal(props){
                 <h3 className="text-center pt-3">{props.title}</h3>
                 <Form.Group className="mb-3">
                     <Form.Label>User ID</Form.Label>
-                    <Form.Control id="UserIDInput" type="text" placeholder="Enter user ID" name="userID" value={userID} onChange={handleOnChange}/>
+                    <Form.Control id="UserIDInput" type="text" placeholder="Enter user ID" name="userID" value={userID} onChange={handleOnChange} readOnly/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>User Name</Form.Label>
