@@ -72,9 +72,11 @@ function Users() {
         return (
             <ul className="flex flex-col justify-center pl-0">
                 {users.map((user, index) => {
+                    const id = "UserItem" + user.id;
                     return (
                         <div
-                            key={user.userID}
+                            id={id}
+                            key={`UserItem${user.userID}`}
                             className="bg-gray-100 w-80 h-64 m-2"
                         >
                             <Card.Title className="pt-5">
@@ -137,7 +139,7 @@ function Users() {
                     rerenderUsers={renderUsers}
                 />
             ) : null}
-            <Button className="primary" onClick={openModal}>
+            <Button id="OpenCreateUserDialogButton" className="primary" onClick={openModal}>
                 add User
             </Button>
             {renderUsers()}

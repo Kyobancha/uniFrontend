@@ -5,7 +5,7 @@ import { create, update } from '../../services/UserService';
 function UserModal(props){
     const [userID, setUserID] = useState(props.modalData?.userID ?? "");
     const [userName, setUserName] = useState(props.modalData?.userName ?? "");
-    const [userPassword, setUserPassword] = useState("");
+    const [userPassword, setUserPassword] = useState(props.modalData?.userPassword ?? "");
     const [isAdmin, setIsAdmin] = useState(props.modalData?.isAdministrator ?? false);
 
     console.log(props.modalData)
@@ -69,7 +69,7 @@ function UserModal(props){
     <div id="grayAreaUserModal" className={`absolute top-0 bg-gray-700 bg-opacity-50 bg-repeat w-screen h-screen`}>
         <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 w-96 bg-white rounded drop-shadow-xl">
             <div className='flex justify-end'>
-                <Button variant="danger" onClick={onCloseButtonClick} className="absolute">
+                <Button id={props.modalData ? "CancelEditUserButton" : ""} variant="danger" onClick={onCloseButtonClick} className="absolute">
                     X
                 </Button>
             </div>
@@ -99,7 +99,7 @@ function UserModal(props){
                 >
                     Is Administrator
                 </ToggleButton>
-                <Button variant="primary" type="submit" id="CreateUserButton" onClick={handleSubmit} className="mt-3">
+                <Button variant="primary" type="submit" id={props.modalData ? "SaveUserButton" : "CreateUserButton"} onClick={handleSubmit} className="mt-3">
                     Save
                 </Button>
             </Form>
