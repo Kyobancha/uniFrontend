@@ -77,7 +77,7 @@ function UserModal(props){
                 <h3 className="text-center pt-3">{props.title}</h3>
                 <Form.Group className="mb-3">
                     <Form.Label>User ID</Form.Label>
-                    <Form.Control id="UserIDInput" type="text" placeholder="Enter user ID" name="userID" value={userID} onChange={handleOnChange} readOnly/>
+                    <Form.Control id="UserIDInput" type="text" placeholder="Enter user ID" name="userID" value={userID} onChange={handleOnChange} readOnly={props.modalData ? true : false}/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>User Name</Form.Label>

@@ -1,62 +1,63 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectToken } from "../../components/LoginModal/userSlice";
-import { get, getAll, remove } from "../../services/UserService";
+import { get, getAll } from "../../services/UserService";
 import { Card, Button } from "react-bootstrap";
 import UserModal from "./UserModal";
+import ConfirmDeleteModal from "../../components/confirmModal/ConfirmDeleteModal";
 
 function Users() {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalData, setModalData] = useState(undefined)
+    const [userModalOpen, setUserModalOpen] = useState(false);
+    const [userModalData, setUserModalData] = useState(undefined);
+    const [confirmDeleteModalData, setConfirmDeleteModalData] =
+        useState(undefined);
     const [users, setUsers] = useState([]);
     const bearerToken = useSelector(selectToken);
 
     function closeModal() {
-        setModalOpen(false);
-        setModalData(undefined);
+        setUserModalOpen(false);
+        setUserModalData(undefined);
     }
 
     function openModal() {
-        setModalOpen(true);
+        setUserModalOpen(true);
     }
 
-    function extractUserId(inputString, unwantedSubString){
+    function closeConfirmDeleteModal() {
+        setConfirmDeleteModalData(undefined);
+    }
+
+    function extractUserId(inputString, unwantedSubString) {
         const extractedUserID = inputString.replace(unwantedSubString, "");
         return extractedUserID;
     }
 
-    function onEditClicked(e){
-        const userID = extractUserId(e.target.id, "EditButton")
+    function onEditClicked(e) {
+        const userID = extractUserId(e.target.id, "EditButton");
         get(bearerToken, userID)
-        .then((res) => {
-            const userData = res.data;
-            setModalData(userData);
-            openModal();
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-
-    function onDeleteClicked(e){
-        const userID = extractUserId(e.target.id, "DeleteButton")
-        
-        remove(userID)
-            .then(() => {
-                return updateUserState();
+            .then((res) => {
+                const userData = res.data;
+                setUserModalData(userData);
+                openModal();
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
-    function updateUserState(){
+    function onDeleteClicked(e) {
+        const userID = extractUserId(e.target.id, "DeleteButton");
+        console.log(userID);
+        setConfirmDeleteModalData(userID);
+    }
+
+    function updateUserState() {
         getAll(bearerToken)
             .then((result) => {
-                return new Promise(resolve => {
+                return new Promise((resolve) => {
                     resolve(setUsers(result.data));
                     console.log(result.data);
-                })
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -64,33 +65,59 @@ function Users() {
     }
 
     useEffect(() => {
-        updateUserState()
+        updateUserState();
     }, []);
 
-    function renderUsers(){
+    function renderUsers() {
         return (
             <ul className="flex flex-col justify-center pl-0">
                 {users.map((user, index) => {
                     return (
-                        <div key={user.userID} className="bg-gray-100 w-80 h-64 m-2">
-                            <Card.Title className="pt-5">{user.userName}</Card.Title>
+                        <div
+                            key={user.userID}
+                            className="bg-gray-100 w-80 h-64 m-2"
+                        >
+                            <Card.Title className="pt-5">
+                                {user.userName}
+                            </Card.Title>
                             <Card.Text>ID: {user.userID}</Card.Text>
-                            <Card.Text>Administrator: {user.isAdministrator}</Card.Text>
+                            <Card.Text>
+                                Administrator: {user.isAdministrator}
+                            </Card.Text>
                             <div>
-                                <Button className="warning mr-1" id={`EditButton${user.userID}`} onClick={onEditClicked}>Edit</Button>
-                                <Button className="ml-1" id={`DeleteButton${user.userID}`} onClick={onDeleteClicked}>Delete</Button>
+                                <Button
+                                    className="warning mr-1"
+                                    id={`EditButton${user.userID}`}
+                                    onClick={onEditClicked}
+                                >
+                                    Edit
+                                </Button>
+                                <Button
+                                    className="ml-1"
+                                    id={`DeleteButton${user.userID}`}
+                                    onClick={onDeleteClicked}
+                                >
+                                    Delete
+                                </Button>
                             </div>
                         </div>
                     );
                 })}
             </ul>
-        )
+        );
     }
 
     return (
         <div id="Container" className="text-center">
+            {confirmDeleteModalData ? (
+                <ConfirmDeleteModal
+                    userID={confirmDeleteModalData}
+                    closeConfirmDeleteModal={closeConfirmDeleteModal}
+                    updateUserState={updateUserState}
+                />
+            ) : null}
             {/* open modal in post mode */}
-            {modalOpen && !modalData ? (
+            {userModalOpen && !userModalData ? (
                 <UserModal
                     title="Add new user"
                     closeModal={closeModal}
@@ -100,10 +127,10 @@ function Users() {
                 />
             ) : null}
             {/* open modal in edit mode */}
-            {modalOpen && modalData ? (
+            {userModalOpen && userModalData ? (
                 <UserModal
                     title="Edit user"
-                    modalData={modalData}
+                    modalData={userModalData}
                     closeModal={closeModal}
                     openModal={openModal}
                     updateUserState={updateUserState}
