@@ -72,7 +72,7 @@ function Users() {
         return (
             <ul className="flex flex-col justify-center pl-0">
                 {users.map((user, index) => {
-                    const id = "UserItem" + user.id;
+                    const id = "UserItem" + user.userID;
                     return (
                         <div
                             id={id}
