@@ -7,7 +7,6 @@ import Messages from "./react/pages/Messages";
 import Imprint from "./react/pages/Imprint";
 import Privacy from "./react/pages/Privacy";
 import Contact from "./react/pages/Contact";
-import LandingPage from "./react/pages/landingPage/LandingPage";
 import PublicHome from "./react/pages/landingPage/PublicHome";
 import PrivateHome from "./react/pages/landingPage/PrivateHome";
 import { useSelector } from "react-redux";
@@ -18,46 +17,43 @@ function App() {
     if (loginStatus === "loggedIn") {
         return (
             <BrowserRouter>
-                {/* Here the tree of possible routes is defined */}
                 <Routes>
-                    <Route path="/" element={<LandingPage />}>
-                        <Route index id="OpenPrivatePageButton" element={<PrivateHome />} />
-                        <Route
-                            path="users"
-                            id="OpenUserManagementButton"
-                            element={<Users />}
-                        />
-                        <Route path="threads" element={<Threads />} />
-                        <Route path="messages" element={<Messages />} />
-                        <Route path="imprint" element={<Imprint />} />
-                        <Route path="privacy" element={<Privacy />} />
-                        <Route path="contact" element={<Contact />} />
-                        <Route
-                            path="*"
-                            element={
-                                <main>
-                                    <p>404 Not found</p>
-                                </main>
-                            }
-                        />
-                    </Route>
+                    <Route
+                        index
+                        id="OpenPrivatePageButton"
+                        element={<PrivateHome />}
+                    />
+                    <Route
+                        path="/users"
+                        id="OpenUserManagementButton"
+                        element={<Users />}
+                    />
+                    <Route path="/threads" element={<Threads />} />
+                    <Route path="/messages" element={<Messages />} />
+                    <Route path="/imprint" element={<Imprint />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route
+                        path="*"
+                        element={
+                            <main>
+                                <p>404 Not found</p>
+                            </main>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         );
     } else {
         return (
             <BrowserRouter>
-                {/* Here the tree of possible routes is defined */}
                 <Routes>
-                    <Route path="/" element={<LandingPage />}>
-                        <Route index element={<PublicHome />} />
-                        <Route path="threads" element={<Threads />} />
-                        <Route path="messages" element={<Messages />} />
-                        <Route path="imprint" element={<Imprint />} />
-                        <Route path="privacy" element={<Privacy />} />
-                        <Route path="contact" element={<Contact />} />
-                        
-                    </Route>
+                    <Route index element={<PublicHome />} />
+                    <Route path="/threads" element={<Threads />} />
+                    <Route path="/messages" element={<Messages />} />
+                    <Route path="/imprint" element={<Imprint />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/contact" element={<Contact />} />
                     <Route render={() => <Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>

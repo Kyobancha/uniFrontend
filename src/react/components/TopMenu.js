@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { logout, selectStatus } from "./LoginModal/userSlice";
 import LoginModal from "./LoginModal/LoginModal";
 import Navigation from "./Navigation";
-import { Button } from "react-bootstrap";
 
 function TopMenu() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -31,7 +31,9 @@ function TopMenu() {
                 closeModalAndLogout={closeModalAndLogout}
                 openModal={openModal}
             />
-            {modalOpen ? <LoginModal modalOpen={modalOpen} closeModal={closeModal} /> : null}
+            {modalOpen ? (
+                <LoginModal modalOpen={modalOpen} closeModal={closeModal} />
+            ) : null}
         </div>
     );
 }

@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap"
+import { Button } from "react-bootstrap";
 
 function submit() {
-    console.log("Submit-button pressed")
+    console.log("Submit-button pressed");
 }
 
 function Form() {
@@ -9,18 +9,19 @@ function Form() {
         <form onSubmit={submit} className="flex flex-col items-center">
             <div className="flex flex-col w-96">
                 <label>Name:</label>
-                <input className="border-2 rounded"/>
+                <input className="border-2 rounded" />
             </div>
             <div className="flex flex-col w-96 mt-3">
                 <label>E-Mail-Address:</label>
-                <input className="border-2 rounded"/>
+                <input className="border-2 rounded" />
             </div>
             <div className="flex flex-col w-96 mt-3">
                 <label>Message:</label>
                 <textarea className="h-32 border-2 rounded"></textarea>
                 <Button className="self-end  mt-2">Submit</Button>
             </div>
-        </form>)
+        </form>
+    );
 }
 
 // render() {
@@ -37,4 +38,4 @@ function Form() {
 //     );
 // }
 
-export default Form
+export default Form;

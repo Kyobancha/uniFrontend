@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button, ToggleButton } from "react-bootstrap";
+
 import { create, update } from "../../services/UserService";
 
 function UserModal(props) {

@@ -1,10 +1,13 @@
+import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { selectToken } from "../../components/LoginModal/userSlice";
 import { get, getAll } from "../../services/UserService";
-import { Card, Button } from "react-bootstrap";
 import UserModal from "./UserModal";
 import ConfirmDeleteModal from "../../components/confirmModal/ConfirmDeleteModal";
+import TopMenu from "../../components/TopMenu";
+import Footer from "../../components/Footer";
 
 function Users() {
     const [userModalOpen, setUserModalOpen] = useState(false);
@@ -111,6 +114,7 @@ function Users() {
 
     return (
         <div id="Container" className="text-center">
+            <TopMenu />
             {confirmDeleteModalData ? (
                 <ConfirmDeleteModal
                     userID={confirmDeleteModalData}
@@ -139,10 +143,15 @@ function Users() {
                     rerenderUsers={renderUsers}
                 />
             ) : null}
-            <Button id="OpenCreateUserDialogButton" className="primary" onClick={openModal}>
+            <Button
+                id="OpenCreateUserDialogButton"
+                className="primary"
+                onClick={openModal}
+            >
                 add User
             </Button>
             {renderUsers()}
+            <Footer />
         </div>
     );
 }

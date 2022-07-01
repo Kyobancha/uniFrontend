@@ -4,7 +4,6 @@ function Adress() {
             <h3 className="font-bold mr-10 text-center">Address:</h3>
             <div className="flex items-center justify-center">
                 <div className="text-left">
-
                     <p>Timo Huynh</p>
                     <p>Rapsstraße 31</p>
                     <p>13629</p>
@@ -12,7 +11,7 @@ function Adress() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Adress
+export default Adress;

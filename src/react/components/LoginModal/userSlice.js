@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import jwt_decode from "jwt-decode";
+
 import authenticate from "../../services/AuthenticationService";
-import jwt_decode from 'jwt-decode';
 
 const initialState = {
     token: "",
@@ -45,6 +46,5 @@ export const { logout } = userSlice.actions;
 export const selectToken = (state) => state.user.token;
 export const selectStatus = (state) => state.user.status;
 export const selectUser = (state) => state.user.user;
-
 
 export default userSlice.reducer;

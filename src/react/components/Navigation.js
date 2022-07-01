@@ -1,5 +1,3 @@
-import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectStatus, selectToken, selectUser } from "./LoginModal/userSlice";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";

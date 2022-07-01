@@ -1,4 +1,5 @@
 import { Carousel } from "react-bootstrap";
+
 import LogoImage from "../../img/landingpage-background.jpg";
 
 function Background() {

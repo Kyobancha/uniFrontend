@@ -1,7 +1,5 @@
-import { NavLink } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"; //replaces NavLink and is useful for designing with bootstrap
-
 
 function Footer(props) {
     return (
