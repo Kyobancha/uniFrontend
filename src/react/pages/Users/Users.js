@@ -73,7 +73,7 @@ function Users() {
 
     function renderUsers() {
         return (
-            <ul className="flex flex-col justify-center pl-0">
+            <ul className="flex flex-wrap pl-0 justify-center w-full">
                 {users.map((user, index) => {
                     const id = "UserItem" + user.userID;
                     return (
