@@ -1,3 +1,4 @@
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -33,14 +34,7 @@ function App() {
                     <Route path="/imprint" element={<Imprint />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route
-                        path="*"
-                        element={
-                            <main>
-                                <p>404 Not found</p>
-                            </main>
-                        }
-                    />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>
         );
@@ -54,7 +48,7 @@ function App() {
                     <Route path="/imprint" element={<Imprint />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route render={() => <Navigate to="/" />} />
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>
         );
