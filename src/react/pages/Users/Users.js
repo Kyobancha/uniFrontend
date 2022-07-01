@@ -73,7 +73,7 @@ function Users() {
 
     function renderUsers() {
         return (
-            <ul className="flex flex-wrap pl-0 justify-center w-full">
+            <ul className="flex flex-wrap pl-0 justify-center w-full pb-16">
                 {users.map((user, index) => {
                     const id = "UserItem" + user.userID;
                     return (
@@ -145,7 +145,7 @@ function Users() {
             ) : null}
             <Button
                 id="OpenCreateUserDialogButton"
-                className="primary"
+                className="primary mt-10"
                 onClick={openModal}
             >
                 add User

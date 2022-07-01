@@ -5,7 +5,6 @@ import { LinkContainer } from "react-router-bootstrap"; //replaces NavLink and i
 
 function Navigation(props) {
     const loginStatus = useSelector(selectStatus);
-    const loginUser = useSelector(selectUser);
     const userToken = useSelector(selectToken);
 
     return loginStatus !== "loggedIn" ? (

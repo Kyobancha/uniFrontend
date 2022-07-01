@@ -26,7 +26,7 @@ function TopMenu() {
     }
 
     return (
-        <div className="mb-5 sticky top-0 ">
+        <div className="sticky top-0 ">
             <Navigation
                 closeModalAndLogout={closeModalAndLogout}
                 openModal={openModal}
