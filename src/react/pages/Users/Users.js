@@ -87,7 +87,7 @@ function Users() {
                             </Card.Title>
                             <Card.Text>ID: {user.userID}</Card.Text>
                             <Card.Text>
-                                Administrator: {user.isAdministrator}
+                                Administrator: {user.isAdministrator ? "true" : "false"}
                             </Card.Text>
                             <div>
                                 <Button

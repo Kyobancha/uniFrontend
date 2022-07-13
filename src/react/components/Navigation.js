@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { selectStatus, selectToken, selectUser } from "./LoginModal/userSlice";
+import { selectStatus, selectUser } from "./LoginModal/userSlice";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"; //replaces NavLink and is useful for designing with bootstrap
 
 function Navigation(props) {
     const loginStatus = useSelector(selectStatus);
-    const userToken = useSelector(selectToken);
+    const user = useSelector(selectUser);
 
     return loginStatus !== "loggedIn" ? (
         <Navbar bg="dark" variant="dark" expand="sm">
@@ -48,7 +48,7 @@ function Navigation(props) {
                         <LinkContainer to="/" id="OpenPrivatePageButton">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        {userToken ? (
+                        {user?.isAdministrator ? (
                             <LinkContainer
                                 to="/users"
                                 id="OpenUserManagementButton"
