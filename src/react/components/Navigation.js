@@ -19,7 +19,7 @@ function Navigation(props) {
                         <LinkContainer to="/">
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/threads">
+                        <LinkContainer to="/threads" id="OpenForumThreadOverviewButton">
                             <Nav.Link>Threads</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/messages">
@@ -56,7 +56,7 @@ function Navigation(props) {
                                 <Nav.Link>Users</Nav.Link>
                             </LinkContainer>
                         ) : null}
-                        <LinkContainer to="/threads">
+                        <LinkContainer to="/threads" id="OpenForumThreadOverviewButton">
                             <Nav.Link>Threads</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/messages">

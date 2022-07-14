@@ -3,44 +3,44 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectToken } from "../../components/LoginModal/userSlice";
-import { get, getAll } from "../../services/UserService";
-import UserModal from "./UserModal";
-import ConfirmDeleteModal from "./UserConfirmDeleteModal";
+import { get, getAll } from "../../services/ForumThreadService";
+import ThreadModal from "./ThreadModal";
+import ConfirmDeleteModal from "./ThreadConfirmDeleteModal";
 import TopMenu from "../../components/TopMenu";
 import Footer from "../../components/Footer";
 
-function Users() {
-    const [userModalOpen, setUserModalOpen] = useState(false);
-    const [userModalData, setUserModalData] = useState(undefined);
+function Threads() {
+    const [threadModalOpen, setThreadModalOpen] = useState(false);
+    const [threadModalData, setThreadModalData] = useState(undefined);
     const [confirmDeleteModalData, setConfirmDeleteModalData] =
         useState(undefined);
-    const [users, setUsers] = useState([]);
+    const [threads, setThreads] = useState([]);
     const bearerToken = useSelector(selectToken);
 
     function closeModal() {
-        setUserModalOpen(false);
-        setUserModalData(undefined);
+        setThreadModalOpen(false);
+        setThreadModalData(undefined);
     }
 
     function openModal() {
-        setUserModalOpen(true);
+        setThreadModalOpen(true);
     }
 
     function closeConfirmDeleteModal() {
         setConfirmDeleteModalData(undefined);
     }
 
-    function extractUserId(inputString, unwantedSubString) {
-        const extractedUserID = inputString.replace(unwantedSubString, "");
-        return extractedUserID;
+    function extractThreadId(inputString, unwantedSubString) {
+        const extractedThreadID = inputString.replace(unwantedSubString, "");
+        return extractedThreadID;
     }
 
     function onEditClicked(e) {
-        const userID = extractUserId(e.target.id, "EditButton");
-        get(bearerToken, userID)
+        const threadID = extractThreadId(e.target.id, "EditForumThreadButton");
+        get(bearerToken, threadID)
             .then((res) => {
-                const userData = res.data;
-                setUserModalData(userData);
+                const threadData = res.data;
+                setThreadModalData(threadData);
                 openModal();
             })
             .catch((error) => {
@@ -49,16 +49,16 @@ function Users() {
     }
 
     function onDeleteClicked(e) {
-        const userID = extractUserId(e.target.id, "DeleteButton");
-        console.log(userID);
-        setConfirmDeleteModalData(userID);
+        const threadID = extractThreadId(e.target.id, "DeleteForumThreadButton");
+        console.log(threadID);
+        setConfirmDeleteModalData(threadID);
     }
 
-    function updateUserState() {
+    function updateThreadState() {
         getAll(bearerToken)
             .then((result) => {
                 return new Promise((resolve) => {
-                    resolve(setUsers(result.data));
+                    resolve(setThreads(result.data));
                     console.log(result.data);
                 });
             })
@@ -68,38 +68,40 @@ function Users() {
     }
 
     useEffect(() => {
-        updateUserState();
+        updateThreadState();
     }, []);
 
-    function renderUsers() {
+    function renderThreads() {
         return (
             <ul className="flex flex-wrap pl-0 justify-center w-full pb-16">
-                {users.map((user, index) => {
-                    const id = "UserItem" + user.userID;
+                {threads.map((thread, index) => {
+                    const id = "ForumThread" + thread._id;
                     return (
                         <div
                             id={id}
-                            key={`UserItem${user.userID}`}
-                            className="bg-gray-100 w-80 h-64 m-2"
+                            key={`${thread._id}`}
+                            className="bg-gray-100 w-80 h-64 m-2 forumThread"
                         >
                             <Card.Title className="pt-5">
-                                {user.userName}
+                                {thread.userName}
                             </Card.Title>
-                            <Card.Text>ID: {user.userID}</Card.Text>
+                            <Card.Text>Thread ID: {thread._id}</Card.Text>
+                            <Card.Text>Owner ID: {thread.ownerID}</Card.Text>
+                            <Card.Text>Thread Name: {thread.name}</Card.Text>
                             <Card.Text>
-                                Administrator: {user.isAdministrator ? "true" : "false"}
+                                Description: {thread.description}
                             </Card.Text>
                             <div>
                                 <Button
                                     className="warning mr-1"
-                                    id={`EditButton${user.userID}`}
+                                    id={`EditForumThreadButton${thread._id}`}
                                     onClick={onEditClicked}
                                 >
                                     Edit
                                 </Button>
                                 <Button
                                     className="ml-1"
-                                    id={`DeleteButton${user.userID}`}
+                                    id={`DeleteForumThreadButton${thread._id}`}
                                     onClick={onDeleteClicked}
                                 >
                                     Delete
@@ -117,43 +119,43 @@ function Users() {
             <TopMenu />
             {confirmDeleteModalData ? (
                 <ConfirmDeleteModal
-                    userID={confirmDeleteModalData}
+                    threadID={confirmDeleteModalData}
                     closeConfirmDeleteModal={closeConfirmDeleteModal}
-                    updateUserState={updateUserState}
+                    updateThreadState={updateThreadState}
                 />
             ) : null}
             {/* open modal in post mode */}
-            {userModalOpen && !userModalData ? (
-                <UserModal
-                    title="Add new user"
+            {threadModalOpen && !threadModalData ? (
+                <ThreadModal
+                    title="Add new thread"
                     closeModal={closeModal}
                     openModal={openModal}
-                    updateUserState={updateUserState}
-                    rerenderUsers={renderUsers}
+                    updateThreadState={updateThreadState}
+                    rerenderThreads={renderThreads}
                 />
             ) : null}
             {/* open modal in edit mode */}
-            {userModalOpen && userModalData ? (
-                <UserModal
-                    title="Edit user"
-                    modalData={userModalData}
+            {threadModalOpen && threadModalData ? (
+                <ThreadModal
+                    title="Edit thread"
+                    modalData={threadModalData}
                     closeModal={closeModal}
                     openModal={openModal}
-                    updateUserState={updateUserState}
-                    rerenderUsers={renderUsers}
+                    updateThreadState={updateThreadState}
+                    rerenderThreads={renderThreads}
                 />
             ) : null}
             <Button
-                id="OpenCreateUserDialogButton"
+                id="OpenCreateForumThreadDialogButton"
                 className="primary mt-10"
                 onClick={openModal}
             >
-                add User
+                add thread
             </Button>
-            {renderUsers()}
+            {renderThreads()}
             <Footer />
         </div>
     );
 }
 
-export default Users;
+export default Threads;
