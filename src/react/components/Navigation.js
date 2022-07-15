@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectStatus, selectUser } from "./LoginModal/userSlice";
+import { selectStatus, selectUser } from "../pages/Users/userSlice";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"; //replaces NavLink and is useful for designing with bootstrap
 

@@ -2,7 +2,7 @@ import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectToken } from "../../components/LoginModal/userSlice";
+import { selectToken } from "./userSlice";
 import { get, getAll } from "../../services/UserService";
 import UserModal from "./UserModal";
 import ConfirmDeleteModal from "./UserConfirmDeleteModal";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { logout, selectStatus } from "./LoginModal/userSlice";
+import { logout, selectStatus } from "../pages/Users/userSlice";
 import LoginModal from "./LoginModal/LoginModal";
 import Navigation from "./Navigation";
 

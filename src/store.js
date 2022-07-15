@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userSlice from './react/components/LoginModal/userSlice'
+import userSlice from './react/pages/Users/userSlice';
 import messageSlice from './react/pages/Messages/messageSlice';
 
 export const store = configureStore({

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 
-import { loginAsync, selectStatus, selectToken } from "./userSlice";
+import { loginAsync, selectStatus, selectToken } from "../../pages/Users/userSlice";
 
 function LoginModal(props) {
     const [userName, setUserName] = useState("");

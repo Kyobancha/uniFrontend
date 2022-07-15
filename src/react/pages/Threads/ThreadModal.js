@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, ToggleButton } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-import { selectUser } from "../../components/LoginModal/userSlice";
+import { selectUser } from "../Users/userSlice";
 import { create, update } from "../../services/ForumThreadService";
 
 function ThreadModal(props) {

@@ -11,7 +11,7 @@ import Contact from "./react/pages/Contact";
 import PublicHome from "./react/pages/landingPage/PublicHome";
 import PrivateHome from "./react/pages/landingPage/PrivateHome";
 import { useSelector } from "react-redux";
-import { selectStatus } from "./react/components/LoginModal/userSlice";
+import { selectStatus } from "./react/pages/Users/userSlice";
 
 function App() {
     const loginStatus = useSelector(selectStatus);
