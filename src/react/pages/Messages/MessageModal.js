@@ -6,7 +6,6 @@ import { selectUser } from "../Users/userSlice";
 import { selectThreadID } from "./messageSlice";
 import { create, update } from "../../services/ForumMessageService";
 
-
 function MessageModal(props) {
     const [messageID] = useState(props.modalData?._id ?? "");
     const forumThreadID = useSelector(selectThreadID);
@@ -82,7 +81,11 @@ function MessageModal(props) {
             <div className="sticky ml-auto mr-auto left-0 right-0 top-1/4 w-96 bg-white rounded drop-shadow-xl">
                 <div className="flex justify-end">
                     <Button
-                        id={props.modalData ? "CancelEditForumMessageButton" : "CancelCreateForumMessageButton"}
+                        id={
+                            props.modalData
+                                ? "CancelEditForumMessageButton"
+                                : "CancelCreateForumMessageButton"
+                        }
                         variant="danger"
                         onClick={onCloseButtonClick}
                         className="absolute"
@@ -95,7 +98,7 @@ function MessageModal(props) {
                     <Form.Group className="mb-4">
                         <Form.Label>Title</Form.Label>
                         <Form.Control
-                            id="ForumMessageNameInput"
+                            id="ForumMessageTitleInput"
                             type="text"
                             placeholder="Enter Title"
                             name="title"
@@ -106,7 +109,7 @@ function MessageModal(props) {
                     <Form.Group className="mb-4">
                         <Form.Label>Text</Form.Label>
                         <Form.Control
-                            id="ForumMessageDescriptionInput"
+                            id="ForumMessageTextInput"
                             type="text"
                             placeholder="Enter text"
                             name="text"
@@ -119,7 +122,7 @@ function MessageModal(props) {
                         type="submit"
                         id={
                             props.modalData
-                                ? "SaveForumMessageButton"
+                                ? "SafeCreateForumMessageButton"
                                 : "CreateForumMessageButton"
                         }
                         onClick={handleSubmit}

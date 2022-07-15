@@ -17,7 +17,7 @@ function Messages() {
         useState(undefined);
     const [messages, setMessages] = useState([]);
     const bearerToken = useSelector(selectToken);
-    const threadID = useSelector(selectThreadID)
+    const threadID = useSelector(selectThreadID);
 
     function closeModal() {
         setMessageModalOpen(false);
@@ -38,7 +38,10 @@ function Messages() {
     }
 
     function onEditClicked(e) {
-        const messageID = extractMessageId(e.target.id, "EditForumMessageButton");
+        const messageID = extractMessageId(
+            e.target.id,
+            "EditForumMessageButton"
+        );
         get(bearerToken, messageID)
             .then((res) => {
                 const messageData = res.data;
@@ -51,13 +54,16 @@ function Messages() {
     }
 
     function onDeleteClicked(e) {
-        const messageID = extractMessageId(e.target.id, "DeleteForumMessageButton");
+        const messageID = extractMessageId(
+            e.target.id,
+            "DeleteForumMessageButton"
+        );
         console.log(messageID);
         setConfirmDeleteModalData(messageID);
     }
 
     function updateMessageState() {
-        console.log(threadID)
+        console.log(threadID);
         getByThreadID(bearerToken, threadID)
             .then((result) => {
                 return new Promise((resolve) => {
@@ -89,11 +95,9 @@ function Messages() {
                                 {message.userName}
                             </Card.Title>
                             <Card.Text>Message ID: {message._id}</Card.Text>
-                            <Card.Text>Owner ID: {message.ownerID}</Card.Text>
-                            <Card.Text>Message Name: {message.name}</Card.Text>
-                            <Card.Text>
-                                Description: {message.description}
-                            </Card.Text>
+                            <Card.Text>Owner ID: {message.authorID}</Card.Text>
+                            <Card.Text>Message Title: {message.title}</Card.Text>
+                            <Card.Text>Text: {message.text}</Card.Text>
                             <div>
                                 <Button
                                     className="warning mr-1"
