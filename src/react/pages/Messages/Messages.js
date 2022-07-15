@@ -8,7 +8,7 @@ import MessageModal from "./MessageModal";
 import ConfirmDeleteModal from "./MessageConfirmDeleteModal";
 import TopMenu from "../../components/TopMenu";
 import Footer from "../../components/Footer";
-import { openThread, selectThreadID } from "./messageSlice";
+import { remember, selectThreadID } from "./messageSlice";
 
 function Messages() {
     const [messageModalOpen, setMessageModalOpen] = useState(false);

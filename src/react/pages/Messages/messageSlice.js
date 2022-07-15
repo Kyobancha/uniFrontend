@@ -8,13 +8,13 @@ export const threadSlice = createSlice({
     name: "message",
     initialState,
     reducers: {
-        openThread: (state, action) => {
+        remember: (state, action) => {
             state.threadID = action.payload;
         },
     },
 });
 
-export const { openThread } = threadSlice.actions;
+export const { remember} = threadSlice.actions;
 
 // Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`

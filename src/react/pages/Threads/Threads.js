@@ -9,7 +9,7 @@ import ConfirmDeleteModal from "./ThreadConfirmDeleteModal";
 import TopMenu from "../../components/TopMenu";
 import Footer from "../../components/Footer";
 import { LinkContainer } from "react-router-bootstrap";
-import { openThread } from "../Messages/messageSlice";
+import { remember } from "../Messages/messageSlice";
 
 function Threads() {
     const [threadModalOpen, setThreadModalOpen] = useState(false);
@@ -40,7 +40,7 @@ function Threads() {
 
     function onOpenClicked(e){
         const threadID = extractThreadId(e.target.id, "ViewForumThreadButton");
-        dispatch(openThread(threadID));
+        dispatch(remember(threadID));
     }
 
     function onEditClicked(e) {
