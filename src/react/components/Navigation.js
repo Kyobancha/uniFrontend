@@ -22,9 +22,6 @@ function Navigation(props) {
                         <LinkContainer to="/threads" id="OpenForumThreadOverviewButton">
                             <Nav.Link>Threads</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/messages">
-                            <Nav.Link>Messages</Nav.Link>
-                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
                 <Button
@@ -58,9 +55,6 @@ function Navigation(props) {
                         ) : null}
                         <LinkContainer to="/threads" id="OpenForumThreadOverviewButton">
                             <Nav.Link>Threads</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/messages">
-                            <Nav.Link>Messages</Nav.Link>
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>

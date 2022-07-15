@@ -36,7 +36,7 @@ function getAll(bearerToken) {
     })
 }
 
-function get(bearerToken, threadID) {//rework
+function get(bearerToken, threadID) {
     axios.defaults.headers.common["Authorization"] = bearerToken;
     return new Promise((resolve, reject) => {
         axios

@@ -8,6 +8,8 @@ import ThreadModal from "./ThreadModal";
 import ConfirmDeleteModal from "./ThreadConfirmDeleteModal";
 import TopMenu from "../../components/TopMenu";
 import Footer from "../../components/Footer";
+import { LinkContainer } from "react-router-bootstrap";
+import { openThread } from "../Messages/messageSlice";
 
 function Threads() {
     const [threadModalOpen, setThreadModalOpen] = useState(false);
@@ -16,6 +18,7 @@ function Threads() {
         useState(undefined);
     const [threads, setThreads] = useState([]);
     const bearerToken = useSelector(selectToken);
+    const dispatch = useDispatch();
 
     function closeModal() {
         setThreadModalOpen(false);
@@ -33,6 +36,11 @@ function Threads() {
     function extractThreadId(inputString, unwantedSubString) {
         const extractedThreadID = inputString.replace(unwantedSubString, "");
         return extractedThreadID;
+    }
+
+    function onOpenClicked(e){
+        const threadID = extractThreadId(e.target.id, "ViewForumThreadButton");
+        dispatch(openThread(threadID));
     }
 
     function onEditClicked(e) {
@@ -92,6 +100,15 @@ function Threads() {
                                 Description: {thread.description}
                             </Card.Text>
                             <div>
+                                <LinkContainer to="/messages">
+                                    <Button
+                                        className="warning mr-1"
+                                        id={`ViewForumThreadButton${thread._id}`}
+                                        onClick={onOpenClicked}
+                                    >
+                                        Open
+                                    </Button>
+                                </LinkContainer>
                                 <Button
                                     className="warning mr-1"
                                     id={`EditForumThreadButton${thread._id}`}

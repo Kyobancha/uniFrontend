@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Users from "./react/pages/Users/Users";
 import Threads from "./react/pages/Threads/Threads";
-import Messages from "./react/pages/Messages";
+import Messages from "./react/pages/Messages/Messages";
 import Imprint from "./react/pages/Imprint";
 import Privacy from "./react/pages/Privacy";
 import Contact from "./react/pages/Contact";
