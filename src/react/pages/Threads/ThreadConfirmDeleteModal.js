@@ -3,7 +3,7 @@ import { Form, Button, ToggleButton } from "react-bootstrap";
 import { remove } from "../../services/ForumThreadService";
 
 function ThreadConfirmDeleteModal(props) {
-    function deleteUser() {
+    function deleteThread() {
         remove(props.threadID)
             .then(() => {
                 return props.updateThreadState();
@@ -34,7 +34,7 @@ function ThreadConfirmDeleteModal(props) {
                 <Button
                     id="DeleteForumThreadConfirm"
                     variant="outline-danger"
-                    onClick={deleteUser}
+                    onClick={deleteThread}
                 >
                     Delete
                 </Button>
